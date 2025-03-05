@@ -1,0 +1,37 @@
+A.) We used 3 different strategies for overriding the equals method : 
+	-The instanceof strategy allows for comparison across a class hierarchy, but it may introduce symmetry issues.
+	-The same-class strategy handle subclass comparisons effectively.
+	-The composition-based strategy is better for encapsulation because it is based on the idea of modularity and reusability.
+
+	Justification for Class Choices and Relationships:
+	A Car is a specific type of Vehicle, making inheritance a natural choice.
+	Cars have additional attributes like power, which justify the subclass existence.
+	The three "equals" strategies are tested using Car to present different strategies to handling inheritance.
+
+
+B.) In a modern application, users can log in using different authentication methods such as:
+
+	- Username & Password
+	- OAuth (Google, Facebook, Twitter)
+	- Biometric Authentication (Fingerprint, Face ID)
+	- Instead of using if-else or switch-case statements to check for different authentication methods, we encapsulate each authentication logic in a separate class.
+
+	Justification of Class Design and Relationships
+	1. AuthenticationStrategy (Interface)
+	This defines a common behavior (authenticate()) that all authentication methods must follow. 
+	It ensures that all strategies share the same contract, promoting consistency.
+	It provides a generic authentication method without enforcing a specific implementation. 
+	Makes it easier to extend the system with new authentication strategies.
+
+	2. Concrete Strategy Classes (UsernamePasswordAuth, OAuthAuth, BiometricAuth)
+	Each class implements AuthenticationStrategy, encapsulating a different authentication mechanism.
+	Each authentication mechanism is implemented independently, making the system modular.
+	New authentication strategies can be added without modifying existing classes.
+
+	3. AuthenticationContext
+	This class is responsible for selecting and executing the appropriate authentication strategy.
+	It stores a reference to an AuthenticationStrategy object and delegates the authentication process to the chosen strategy.
+
+	This class decouples authentication logic from authentication methods.
+	It allows dynamic switching of authentication strategies at runtime.
+	Ensures scalability as the system grows to support additional authentication methods.
